@@ -75,8 +75,8 @@ Stream.of(
   "http://example.com",
   "http://google.com"
 )
-.map(ExceptionUnchecker.uncheck(URL::new))
-.map(ExceptionUnchecker.uncheck(URL::getContent))
+.map(Helper.uncheck(URL::new))
+.map(Helper.uncheck(URL::getContent))
 .forEach(System.out::println);
 ```
 
