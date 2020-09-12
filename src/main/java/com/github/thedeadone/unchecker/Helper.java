@@ -47,7 +47,7 @@ import java.util.concurrent.Callable;
 
 
 /**
- * Хэлпер для часто используемых враперов
+ * Helper for frequently used wrappers
  */
 public final class Helper {
     private Helper() {  }

@@ -1,6 +1,6 @@
 # Exception Unchecker
 
-Каждый java-программист ежедневно сталкивается с неудобством проверяемых исключений. Хотелось бы сделать так
+Every java programmer faces the inconvenience of checked exceptions daily. We want something like this
 
 ```java
 Stream.of(
@@ -12,11 +12,11 @@ Stream.of(
 .forEach(System.out::println);
 ```
 
-но не выйдет, компилятор выдаст ошибку
+but it won't work, the compiler will throw an error
 
 > incompatible thrown types MalformedURLException in method reference
 
-И приходится городить что-нибудь вроде
+And we have to crutch something like
 
 ```java
 Stream.of(
@@ -40,7 +40,7 @@ Stream.of(
 .forEach(System.out::println);
 ```
 
-Мало того, что это выглядит ужасно, так ещё и маскирует исходное исключение. Как минимум в трассировке стека будут лишние элементы, а если это исключение нужно было перехватить в вызывающем коде, то понадобится очередная уродливая конструкция типа
+It looks awful and it hides the original exception. At least there will be extra elements in the stack trace, and if this exception had to be caught in the calling code, then another ugly crutch appear
 
 ```java
 try {
@@ -54,9 +54,9 @@ try {
 }
 ```
 
-К счастью, проверяемые исключения - это явление времени компиляции, а для виртуальной машины все исключения одинаковы. Это даёт возможность обмануть компилятор, заворачивая лямбды, выбрасывающие проверяемые исключения, в лямбды, их не выбрасывающие.
+Fortunately, checked exceptions are a compile-time phenomenon, and for a virtual machine, all exceptions are the same. This makes it possible to trick the compiler by wrapping lambdas that throw checked exceptions into lambdas that do not throw them.
 
-Библиотека это как раз и делает, генерируя обёртки в рантайме с помощью [LambdaMetafactory]( https://docs.oracle.com/javase/8/docs/api/java/lang/invoke/LambdaMetafactory.html). Например
+This is exactly what the library does by generating wrappers at runtime with [LambdaMetafactory]( https://docs.oracle.com/javase/8/docs/api/java/lang/invoke/LambdaMetafactory.html). For example
 
 ```java
 Stream.of(
@@ -68,7 +68,7 @@ Stream.of(
 .forEach(System.out::println);
 ```
 
-Для часто используемых функциональных интерфейсв есть хэлпер ещё больше упрощающий код
+For frequently used functional interfaces, there is a helper to simplify the code even more
 
 ```java
 Stream.of(
@@ -80,8 +80,8 @@ Stream.of(
 .forEach(System.out::println);
 ```
 
-И конечно, метод uncheck можно статически импортировать для ещё большей краткости.
+And of course, the `uncheck` method can be statically imported for even more brevity.
 
 &nbsp;
 
-*На идею написания библиотеки натолкнул [вопрос на Stackoverflow](https://ru.stackoverflow.com/q/634549/204271)*
+*The idea of writing the library came from a [question on Stackoverflow](https://ru.stackoverflow.com/q/634549/204271)*
