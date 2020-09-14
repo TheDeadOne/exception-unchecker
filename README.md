@@ -44,7 +44,7 @@ It looks awful and it hides the original exception. At least there will be extra
 
 ```java
 try {
-  // Код предыдущего примера
+  // Code from the previous example
 } catch (RuntimeException exc) {
   if (exc.getCause() instanceof MalformedURLException) {
     // Обработка ошибки
