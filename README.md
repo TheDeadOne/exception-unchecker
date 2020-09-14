@@ -47,7 +47,7 @@ try {
   // Code from the previous example
 } catch (RuntimeException exc) {
   if (exc.getCause() instanceof MalformedURLException) {
-    // Обработка ошибки
+    // Exception handling
   } else {
     throw exc;
   }
