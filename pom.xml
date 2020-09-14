@@ -5,7 +5,7 @@
   <groupId>com.github.thedeadone</groupId>
   <artifactId>exception-unchecker</artifactId>
   <packaging>jar</packaging>
-  <version>1.1-alpha</version>
+  <version>1.1</version>
   <name>Exception Unchecker</name>
   <url>https://github.com/TheDeadOne/exception-unchecker</url>
 
