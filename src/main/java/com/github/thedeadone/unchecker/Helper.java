@@ -1,50 +1,15 @@
 package com.github.thedeadone.unchecker;
 
+import com.github.thedeadone.unchecker.interfaces.*;
+import com.github.thedeadone.unchecker.wrappers.*;
+
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
-import java.util.function.BinaryOperator;
 import java.util.function.BiPredicate;
-import java.util.function.BooleanSupplier;
 import java.util.function.Consumer;
-import java.util.function.DoubleBinaryOperator;
-import java.util.function.DoubleConsumer;
-import java.util.function.DoubleFunction;
-import java.util.function.DoublePredicate;
-import java.util.function.DoubleSupplier;
-import java.util.function.DoubleToIntFunction;
-import java.util.function.DoubleToLongFunction;
-import java.util.function.DoubleUnaryOperator;
 import java.util.function.Function;
-import java.util.function.IntBinaryOperator;
-import java.util.function.IntConsumer;
-import java.util.function.IntFunction;
-import java.util.function.IntPredicate;
-import java.util.function.IntSupplier;
-import java.util.function.IntToDoubleFunction;
-import java.util.function.IntToLongFunction;
-import java.util.function.IntUnaryOperator;
-import java.util.function.LongBinaryOperator;
-import java.util.function.LongConsumer;
-import java.util.function.LongFunction;
-import java.util.function.LongPredicate;
-import java.util.function.LongSupplier;
-import java.util.function.LongToDoubleFunction;
-import java.util.function.LongToIntFunction;
-import java.util.function.LongUnaryOperator;
-import java.util.function.ObjDoubleConsumer;
-import java.util.function.ObjIntConsumer;
-import java.util.function.ObjLongConsumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
-import java.util.function.ToDoubleBiFunction;
-import java.util.function.ToDoubleFunction;
-import java.util.function.ToIntBiFunction;
-import java.util.function.ToIntFunction;
-import java.util.function.ToLongBiFunction;
-import java.util.function.ToLongFunction;
-import java.util.function.UnaryOperator;
-import java.util.concurrent.Callable;
-
 
 /**
  * Helper for frequently used wrappers
@@ -52,35 +17,35 @@ import java.util.concurrent.Callable;
 public final class Helper {
     private Helper() {  }
 
-    public static Runnable uncheck(ThrowingRunnable<? extends Exception> runnable) {
+    public static Runnable uncheck(ThrowingRunnable<? extends Throwable> runnable) {
         return RunnableWrapper.wrap(runnable);
     }
 
-    public static <T> Consumer<T> uncheck(ThrowingConsumer<T, ? extends Exception> consumer) {
+    public static <T> Consumer<T> uncheck(ThrowingConsumer<T, ? extends Throwable> consumer) {
         return ConsumerWrapper.wrap(consumer);
     }
 
-    public static <T, R> Function<T, R> uncheck(ThrowingFunction<T, R, ? extends Exception> function) {
+    public static <T, R> Function<T, R> uncheck(ThrowingFunction<T, R, ? extends Throwable> function) {
         return FunctionWrapper.wrap(function);
     }
 
-    public static <T> Predicate<T> uncheck(ThrowingPredicate<T, ? extends Exception> predicate) {
+    public static <T> Predicate<T> uncheck(ThrowingPredicate<T, ? extends Throwable> predicate) {
         return PredicateWrapper.wrap(predicate);
     }
 
-    public static <T> Supplier<T> uncheck(ThrowingSupplier<T, ? extends Exception> supplier) {
+    public static <T> Supplier<T> uncheck(ThrowingSupplier<T, ? extends Throwable> supplier) {
         return SupplierWrapper.wrap(supplier);
     }
 
-    public static <T, U> BiConsumer<T, U> uncheck(ThrowingBiConsumer<T, U, ? extends Exception> biConsumer) {
+    public static <T, U> BiConsumer<T, U> uncheck(ThrowingBiConsumer<T, U, ? extends Throwable> biConsumer) {
         return BiConsumerWrapper.wrap(biConsumer);
     }
 
-    public static <T, U, R> BiFunction<T, U, R> uncheck(ThrowingBiFunction<T, U, R, ? extends Exception> biFunction) {
+    public static <T, U, R> BiFunction<T, U, R> uncheck(ThrowingBiFunction<T, U, R, ? extends Throwable> biFunction) {
         return BiFunctionWrapper.wrap(biFunction);
     }
 
-    public static <T, U> BiPredicate<T, U> uncheck(ThrowingBiPredicate<T, U, ? extends Exception> biPredicate) {
+    public static <T, U> BiPredicate<T, U> uncheck(ThrowingBiPredicate<T, U, ? extends Throwable> biPredicate) {
         return BiPredicateWrapper.wrap(biPredicate);
     }
 }

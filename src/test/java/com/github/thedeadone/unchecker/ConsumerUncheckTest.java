@@ -4,11 +4,10 @@ import java.util.Optional;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 import static com.github.thedeadone.unchecker.Helper.uncheck;
-
 
 public class ConsumerUncheckTest {
     private static void consumer(String value) throws InterruptedException {
@@ -19,13 +18,13 @@ public class ConsumerUncheckTest {
     }
 
     @Test
-    public void testSuccess() {
+    public void success() {
         Optional.of("success")
                 .ifPresent(uncheck(ConsumerUncheckTest::consumer));
     }
 
     @Test(expected=InterruptedException.class)
-    public void testFail() {
+    public void fail() {
         Optional.of("fail")
                 .ifPresent(uncheck(ConsumerUncheckTest::consumer));
     }

@@ -4,11 +4,10 @@ import java.util.Optional;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 import static com.github.thedeadone.unchecker.Helper.uncheck;
-
 
 public class SupplierUncheckTest {
     private static boolean throwException = false;
@@ -22,18 +21,18 @@ public class SupplierUncheckTest {
     }
 
     @Test
-    public void testSuccess() {
+    public void success() {
         throwException = false;
 
-        assertThat(Optional.ofNullable(null)
+        assertThat(Optional.empty()
                            .orElseGet(uncheck(SupplierUncheckTest::supplier)), is("success"));
     }
 
     @Test(expected=InterruptedException.class)
-    public void testFail() {
+    public void fail() {
         throwException = true;
 
-        Optional.ofNullable(null)
+        Optional.empty()
                 .orElseGet(uncheck(SupplierUncheckTest::supplier));
     }
 }
