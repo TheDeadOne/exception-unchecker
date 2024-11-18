@@ -2,12 +2,31 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.github.thedeadone</groupId>
+  <groupId>io.github.thedeadone</groupId>
   <artifactId>exception-unchecker</artifactId>
   <packaging>jar</packaging>
   <version>2.0</version>
   <name>Exception Unchecker</name>
+  <description>Library for getting rid of checked exceptions</description>
   <url>https://github.com/TheDeadOne/exception-unchecker</url>
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <name>Sergey Gornostaev</name>
+      <email>sergey@gornostaev.dev</email>
+    </developer>
+  </developers>
+ 
+  <scm>
+    <connection>scm:git:git://github.com/TheDeadOne/exception-unchecker.git</connection>
+    <developerConnection>scm:git:ssh://github.com/TheDeadOne/exception-unchecker.git</developerConnection>
+    <url>http://github.com/TheDeadOne/exception-unchecker/tree/master</url>
+  </scm>
 
   <properties>
     <maven.compiler.source>1.8</maven.compiler.source>
@@ -29,4 +48,63 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.sonatype.central</groupId>
+        <artifactId>central-publishing-maven-plugin</artifactId>
+        <version>0.6.0</version>
+        <extensions>true</extensions>
+        <configuration>
+          <publishingServerId>central</publishingServerId>
+          <autoPublish>true</autoPublish>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>3.2.1</version>
+        <executions>
+          <execution>
+          <id>attach-sources</id>
+          <goals>
+            <goal>jar-no-fork</goal>
+          </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.2.0</version>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+        <version>3.2.4</version>
+        <executions>
+          <execution>
+            <id>sign-artifacts</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>sign</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <keyname>${gpg.keyname}</keyname>
+          <passphraseServerId>central</passphraseServerId>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>
